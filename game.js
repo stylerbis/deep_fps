@@ -803,6 +803,11 @@ function waveComplete() {
     waveMessage.textContent = `Score: ${gameState.score} | Prepare for the next wave!`;
     
     showPowerupSelection();
+    
+    // Delay releasing pointer lock to prevent accidental clicks
+    setTimeout(() => {
+        document.exitPointerLock();
+    }, 500);
 }
 
 function nextWave() {
@@ -844,7 +849,11 @@ function gameOver() {
     document.getElementById('final-waves').textContent = gameState.wave;
     document.getElementById('final-score').textContent = gameState.score;
     document.getElementById('game-over-screen').classList.remove('hidden');
-    canvas.releasePointerCapture();
+    
+    // Delay releasing pointer lock to prevent accidental clicks
+    setTimeout(() => {
+        document.exitPointerLock();
+    }, 500);
 }
 
 function togglePause() {
@@ -892,13 +901,18 @@ document.addEventListener('keyup', (e) => {
 
 document.addEventListener('mousemove', (e) => {
     if (mouseLocked && gameState.running && !gameState.paused) {
-        player.angle += e.movementX * 0.002;
+        player.angle -= e.movementX * ROTATION_SPEED * 0.1;
     }
 });
 
-canvas.addEventListener('click', () => {
+canvas.addEventListener('mousedown', (e) => {
     if (gameState.running && !gameState.paused) {
-        canvas.requestPointerLock();
+        if (!mouseLocked) {
+            canvas.requestPointerLock();
+        }
+        if (e.button === 0) {
+            shoot();
+        }
     }
 });
 
