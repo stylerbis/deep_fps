@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep FPS - Wave Survival</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Game Canvas -->
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- HUD -->
+        <div id="hud">
+            <div id="health-bar">
+                <span>Health:</span>
+                <div id="health-fill"></div>
+            </div>
+            <div id="wave-info">
+                <span>Wave: </span><span id="wave-number">1</span>
+                <span> | Enemies: </span><span id="enemies-remaining">0</span>
+            </div>
+            <div id="score-info">
+                <span>Score: </span><span id="score">0</span>
+            </div>
+            <div id="weapon-info">
+                <span>Weapon: </span><span id="weapon-name">Pistol</span>
+                <span> | Ammo: </span><span id="ammo">∞</span>
+            </div>
+        </div>
+        
+        <!-- Power-up Indicators -->
+        <div id="powerups">
+            <div id="powerup-active" class="powerup-slot" title="Active Power-up">
+                <span class="powerup-icon"></span>
+            </div>
+        </div>
+        
+        <!-- Crosshair -->
+        <div id="crosshair"></div>
+        
+        <!-- Start Screen -->
+        <div id="start-screen">
+            <h1>DEEP FPS</h1>
+            <h2>WAVE SURVIVAL</h2>
+            <div class="instructions">
+                <p>Survive as many waves as you can!</p>
+                <p>WASD - Move | Mouse - Look | Click - Shoot</p>
+                <p>Collect power-ups between waves</p>
+            </div>
+            <button id="start-btn">START GAME</button>
+        </div>
+        
+        <!-- Wave Complete Screen -->
+        <div id="wave-screen" class="hidden">
+            <h2 id="wave-title">Wave Complete!</h2>
+            <p id="wave-message">Get ready for the next wave...</p>
+            <div id="powerup-pick"></div>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="hidden">
+            <h1>GAME OVER</h1>
+            <p>Waves Survived: <span id="final-waves">0</span></p>
+            <p>Final Score: <span id="final-score">0</span></p>
+            <button id="restart-btn">PLAY AGAIN</button>
+        </div>
+        
+        <!-- Pause Screen -->
+        <div id="pause-screen" class="hidden">
+            <h2>PAUSED</h2>
+            <p>Press ESC to resume</p>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
